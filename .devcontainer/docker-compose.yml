@@ -1,0 +1,32 @@
+version: '3'
+
+networks:
+  app:
+
+services:
+  bot:
+    env_file: ../.env
+    image: stock_watch_bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    networks:
+      - app
+
+  db:
+    image: mongo:5.0
+    restart: unless-stopped
+    env_file: ../.env
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - app
+    ports:
+      - "27017:27017"
+    # Add "forwardPorts": ["27017"] to **devcontainer.json** to forward MongoDB locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+volumes:
+  mongodb-data:

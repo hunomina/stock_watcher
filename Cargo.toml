@@ -1,0 +1,33 @@
+[package]
+edition = "2021"
+name = "stock_watcher_bot"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dotenv = "0.15.0"
+dotenv_codegen = "0.15.0"
+reqwest = "0.11"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.17", features = ["full"] }
+mongodb = "2.1.0"
+futures = "0.3"
+
+[dependencies.serenity]
+version = "0.10"
+default-features = false
+features = [
+    "builder",
+    "cache",
+    "client",
+    "framework",
+    "gateway",
+    "http",
+    "model",
+    "standard_framework",
+    "utils",
+    "rustls_backend",
+    "unstable_discord_api",
+]
